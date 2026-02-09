@@ -16,7 +16,9 @@ body {
     text-align: center;
     margin: 0;
     padding: 75px 0;
-    background: linear-gradient(#ffffff, #f9d6d6);
+    /* Use the pixel heart background instead of the gradient */
+    background-image: url("heart-bg.jpg"); 
+    background-size: cover;
     font-family: "Steph", sans-serif;
 }
 
