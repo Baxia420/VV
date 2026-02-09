@@ -3,23 +3,151 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>will you be my valentine?</title>
+    <title>A Special Letter</title>
     <link rel="stylesheet" href="styles.css">
+    <style>
+        /* Base Setup */
+        body { 
+            background-image: url("heart-bg.jpg"); 
+            background-size: cover; 
+            height: 100vh;
+            display: flex;
+            align-items: center; 
+            justify-content: center; 
+            margin: 0;
+            overflow: hidden; 
+        }
+
+        .intro-wrapper { 
+            display: flex; 
+            flex-direction: column; 
+            align-items: center; 
+            text-align: center; 
+            width: 90%;
+            max-width: 1200px;
+        }
+
+        /* 1. SPARKLE ANIMATION */
+        @keyframes sparkle {
+            0% { transform: scale(1); filter: drop-shadow(0 0 0px #fff); }
+            50% { transform: scale(1.05); filter: drop-shadow(0 0 20px #fff); }
+            100% { transform: scale(1); filter: drop-shadow(0 0 0px #fff); }
+        }
+
+        /* Container */
+        #envelope-container { 
+            cursor: pointer; 
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            transition: transform 0.2s;
+        }
+        
+        #envelope-container:hover { transform: scale(1.02); }
+
+        /* Envelope Image with Animation */
+        #envelope { 
+            width: 350px; 
+            height: auto; 
+            margin-bottom: 20px; 
+            animation: sparkle 2s infinite ease-in-out; 
+        }
+
+        /* 2. PROMPT TEXT */
+        .prompt-text {
+            font-size: 2.2rem;
+            font-weight: bold;
+            color: #db4e4e;
+            text-shadow: 0 0 10px rgba(255, 255, 255, 1), 
+                         0 0 5px rgba(255, 255, 255, 1);
+            background: rgba(255, 255, 255, 0.6); 
+            padding: 10px 25px;
+            border-radius: 20px;
+            display: inline-block;
+            transform: translateZ(0); 
+        }
+
+        /* 3. MESSAGE CONTENT */
+        #message-content { 
+            display: none; 
+            align-items: center; 
+            justify-content: center; 
+            gap: 50px; 
+            padding: 20px; 
+            width: 100%;
+            animation: fadeIn 1s ease; 
+        }
+
+        .intro-text { 
+            flex: 1; 
+            font-size: 1.8rem; 
+            line-height: 1.8; 
+            background: rgba(255, 255, 255, 0.9); 
+            padding: 40px; 
+            border-radius: 20px; 
+            border: 3px dashed #ff8da1; 
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+        }
+
+        .side-cat { width: 220px; height: auto; }
+        .dancing-kitty { margin-top: -120px; }
+
+        #proceed-btn { 
+            display: none; 
+            margin-top: 40px; 
+            background-color: #ff8da1; 
+            color: white; 
+            padding: 15px 40px; 
+            font-size: 1.6rem; 
+            cursor: pointer; 
+            border: none; 
+            border-radius: 12px; 
+            font-weight: bold;
+        }
+
+        @keyframes fadeIn { 
+            from { opacity: 0; transform: translateY(20px); } 
+            to { opacity: 1; transform: translateY(0); } 
+        }
+        
+        @media (max-width: 800px) {
+            #message-content { flex-direction: column; }
+            .side-cat { width: 150px; }
+            .intro-text { font-size: 1.4rem; order: -1; }
+            #envelope { width: 250px; }
+        }
+    </style>
 </head>
 <body>
-    <div class="container">
-        <!-- Gif -->
-        <img src="assets/images/togepi-love.gif" id="togepi-gif" alt="a cute picture of togepi"/>
-        <!-- Question -->
-        <h1 id="message">
-        Will you be my Valentine? (˶ᵔ ᵕ ᵔ˶)
-        </h1>
-    </div>
-        <!-- Buttons -->
-        <div class="btn-container">
-            <button id="yes-btn"  onclick="window.location.href='yay.html'">Yes</button>
-            <button id="no-btn">No</button>
+    <div class="intro-wrapper">
+        <div id="envelope-container" onclick="openLetter()">
+            <img src="assets/images/envelope.png" alt="Envelope" id="envelope">
+            <p class="prompt-text">♡ Click to open your letter ♡</p>
         </div>
-    <script src="script.js"></script>
+
+        <div id="message-content">
+            <img src="assets/images/cat_heart.gif" class="side-cat" alt="cat heart">
+            <div class="intro-text">
+                <p>
+                    From the moment we met, my world became brighter.<br>
+                    Every smile you share feels like a gift just for me.<br>
+                    You are my favorite person and my greatest adventure.<br>
+                    I am so lucky to have you by my side through everything.<br>
+                    Now, I have a very important question to ask you...
+                </p>
+            </div>
+            <img src="assets/images/cat_dance.gif" class="side-cat dancing-kitty" alt="cat dance">
+        </div>
+
+        <button id="proceed-btn" onclick="window.location.href='main.html'">Click me to proceed</button>
+    </div>
+
+    <script>
+        function openLetter() {
+            document.getElementById('envelope-container').style.display = 'none';
+            document.getElementById('message-content').style.display = 'flex';
+            document.getElementById('proceed-btn').style.display = 'block';
+        }
+    </script>
 </body>
 </html>
